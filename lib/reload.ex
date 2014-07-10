@@ -35,7 +35,7 @@ defmodule Reload.Server do
     end
   end
 
-  def handle_info(:wake, st={last, interval}) do
+  def handle_info(:wake, {last, interval}) do
     now = stamp
     Reload.Runner.go(last, now)
     wait(interval)
@@ -53,7 +53,7 @@ end
 
 defmodule Reload.Runner do
   def beams() do
-    files = for d <- Mix.Project.load_paths do
+    for d <- Mix.Project.load_paths do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
     end |> List.flatten
   end
