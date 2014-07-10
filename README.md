@@ -9,7 +9,7 @@ and the current env.
 ### Usage
 
 - add to deps: 
-  `{:reprise, github: "herenowcoder/reprise", tag: "v0.1.0", only: :dev}`
+  `{:reprise, "~> 0.1.1"}`
 
 - add to apps:
     ```Elixir
