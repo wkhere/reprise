@@ -1,8 +1,8 @@
-defmodule Reload.Mixfile do
+defmodule Reprise.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :reload,
+    [app: :reprise,
      version: "0.0.1",
      elixir: "~> 0.14.2",
      deps: deps]
@@ -13,7 +13,7 @@ defmodule Reload.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [applications: [],
-     mod: {Reload, []}]
+     mod: {Reprise, []}]
   end
 
   # Dependencies can be hex.pm packages:

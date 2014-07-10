@@ -1,5 +1,5 @@
-Reload
-======
+Reprise
+=======
 
 A simplified module reloader for Elixir.
 

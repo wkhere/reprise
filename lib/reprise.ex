@@ -1,4 +1,4 @@
-defmodule Reload do
+defmodule Reprise do
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -8,17 +8,18 @@ defmodule Reload do
 
     children = [
       # Define workers and child supervisors to be supervised
-      worker(Reload.Server, [[interval: 1000]])
+      worker(Reprise.Server, [[interval: 1000]])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Reload.Supervisor]
+    opts = [strategy: :one_for_one, name: Reprise.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
 
-defmodule Reload.Server do
+
+defmodule Reprise.Server do
   use GenServer
 
   def start_link(kw), do: GenServer.start_link(__MODULE__, kw)
@@ -37,7 +38,7 @@ defmodule Reload.Server do
 
   def handle_info(:wake, {last, interval}) do
     now = stamp
-    Reload.Runner.go(last, now)
+    Reprise.Runner.go(last, now)
     wait(interval)
     {:noreply, {now, interval}}
   end
@@ -51,7 +52,7 @@ defmodule Reload.Server do
 end
 
 
-defmodule Reload.Runner do
+defmodule Reprise.Runner do
   def beams() do
     for d <- Mix.Project.load_paths do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
