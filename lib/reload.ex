@@ -8,7 +8,7 @@ defmodule Reload do
 
     children = [
       # Define workers and child supervisors to be supervised
-      worker(Reload.Server, [1000])
+      worker(Reload.Server, [[interval: 1000]])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
@@ -20,6 +20,8 @@ end
 
 defmodule Reload.Server do
   use GenServer
+
+  def start_link(kw), do: GenServer.start_link(__MODULE__, kw)
 
   # callbacks
 
