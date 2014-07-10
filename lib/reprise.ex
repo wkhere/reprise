@@ -43,8 +43,6 @@ defmodule Reprise.Server do
     {:noreply, {now, interval}}
   end
 
-  #def handle_call(:stop, _from, st), do: {:stop, :shutdown, st}
-
   # helpers
 
   defp wait(interval), do: Process.send_after(self, :wake, interval)
