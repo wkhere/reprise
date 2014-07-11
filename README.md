@@ -6,6 +6,8 @@ It differs from its predecessors ([exreloader][1], mochiweb reloader)
 in a way that it scans only beam files of the current mix project
 and the current env.
 
+[1]: http://github.com/yrashk/exreloader
+
 ### Usage
 
 - add to deps: 
@@ -23,4 +25,7 @@ and the current env.
 Then your modules will be reinjected into your node - iex session
 for instance - with a nice log report, each time you recompile them.
 
-[1]: http://github.com/yrashk/exreloader
+### License
+
+The code is released under the BSD 2-Clause License.
+
