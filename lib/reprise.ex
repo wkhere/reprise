@@ -27,21 +27,21 @@ defmodule Reprise.Server do
       !interval -> {:stop, "pass interval arg"}
       :ok ->
         wait(interval)
-        {:ok, {stamp, interval}}
+        {:ok, {now(), interval}}
     end
   end
 
   def handle_info(:wake, {last, interval}) do
-    now = stamp
-    Reprise.Runner.go(last, now)
+    timestamp = now()
+    Reprise.Runner.go(last, timestamp)
     wait(interval)
-    {:noreply, {now, interval}}
+    {:noreply, {timestamp, interval}}
   end
 
   # helpers
 
   defp wait(interval), do: Process.send_after(self, :wake, interval)
-  defp stamp(), do: :erlang.localtime
+  defp now(), do: :erlang.localtime
 end
 
 
