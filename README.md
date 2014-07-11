@@ -9,7 +9,7 @@ and the current env.
 ### Usage
 
 - add to deps: 
-  `{:reprise, "~> 0.1.1"}`
+  `{:reprise, "~> 0.1.2"}`
 
 - add to apps:
     ```Elixir
