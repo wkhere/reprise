@@ -17,7 +17,9 @@ end
 defmodule Reprise.Server do
   use GenServer
 
-  def start_link(kw), do: GenServer.start_link(__MODULE__, kw)
+  def start_link(kw) do
+    GenServer.start_link(__MODULE__, kw, name: Reprise)
+  end
 
   # callbacks
 
