@@ -38,6 +38,15 @@ iex(2)> Reprise.Server.interval(2000)
 {:ok, [prev: 1000]}
 ```
 
+#### Loading a module for the first time
+
+Please note that until Elixir [bug #2553](https://github.com/elixir-lang/elixir/issues/2533)
+is fixed, you need to manually load modules for the first time into iex.
+This is because your application has wrong bytecode signatures at start,
+they point to the source files not the beams.
+
+Just do: `l MyModule` in iex, then your stuff will be reloaded.
+
 ### License
 
 The code is released under the BSD 2-Clause License.
