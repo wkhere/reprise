@@ -21,6 +21,8 @@ defmodule Reprise.Server do
     GenServer.start_link(__MODULE__, kw, name: Reprise)
   end
 
+  def interval(arg\\nil), do: GenServer.call(Reprise, {:interval, arg})
+
   # callbacks
 
   def init(kw) do
@@ -38,6 +40,14 @@ defmodule Reprise.Server do
     Reprise.Runner.go(last, timestamp)
     wait(interval)
     {:noreply, {timestamp, interval}}
+  end
+
+  def handle_call({:interval, nil}, _from, st={_, interval}) do
+    {:reply, interval, st}
+  end
+
+  def handle_call({:interval, new_interval}, _from, {last, interval}) do
+    {:reply, {:ok, [prev: interval]}, {last, new_interval}}
   end
 
   # helpers

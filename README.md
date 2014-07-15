@@ -29,7 +29,14 @@ to do this:
 Then your modules will be reinjected into your node - iex session
 for instance - with a nice log report, each time you recompile them.
 
-The interval between scans for changed modules is 1 second.
+The default interval between scans for changed modules is 1 second.
+You can check it and set a new one - the unit is milliseconds:
+```Elixir
+iex(1)> Reprise.Server.interval
+1000
+iex(2)> Reprise.Server.interval(2000)
+{:ok, [prev: 1000]}
+```
 
 ### License
 
