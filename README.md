@@ -10,8 +10,12 @@ and the current env.
 
 ### Usage
 
+Reprise is best used on dev environment, that's usually where
+you need reloading of modules. Here goes an example on how
+to do this:
+
 - add to deps: 
-  `{:reprise, "~> 0.1.3"}`
+  `{:reprise, "~> 0.1.3", only: :dev}`
 
 - add to apps:
     ```Elixir
@@ -24,6 +28,8 @@ and the current env.
 
 Then your modules will be reinjected into your node - iex session
 for instance - with a nice log report, each time you recompile them.
+
+The interval between scans for changed modules is 1 second.
 
 ### License
 
