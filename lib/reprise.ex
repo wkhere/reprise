@@ -59,13 +59,9 @@ end
 
 defmodule Reprise.Runner do
   def beams() do
-    if Mix.Project.umbrella? do
-      x = for dep <- Mix.Dep.Umbrella.loaded do
-        iterate_beams([Application.app_dir(dep.app, "ebin")])
-      end |> List.flatten
-    else
-      iterate_beams(Mix.Project.load_paths)
-    end
+    for d <- Mix.Project.load_paths do
+      for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
+    end |> List.flatten
   end
 
   def beam_modules() do
@@ -96,11 +92,4 @@ defmodule Reprise.Runner do
     unless reloaded == [], do:
       :error_logger.info_msg("Reloaded modules: #{inspect reloaded}\n")
   end
-
-  defp iterate_beams(load_paths) do
-    for d <- load_paths do
-      for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
-    end |> List.flatten
-  end
-
 end
