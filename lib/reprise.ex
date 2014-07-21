@@ -58,11 +58,13 @@ end
 
 
 defmodule Reprise.Runner do
-  def beams() do
-    for d <- Mix.Project.load_paths do
+  defp iterate_beams(load_paths) do
+    for d <- load_paths do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
     end |> List.flatten
   end
+
+  def beams(), do: iterate_beams(Mix.Project.load_paths)
 
   def beam_modules() do
     beamset = beams |> Enum.into HashSet.new
