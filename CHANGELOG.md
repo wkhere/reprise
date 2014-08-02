@@ -1,3 +1,6 @@
+## v0.2.3
+Upgrade to Elixir 0.15.0 w/ Logger
+
 ## v0.2.2
 Refactoring & tests on beam/mod retrieval
 
