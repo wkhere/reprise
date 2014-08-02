@@ -58,6 +58,8 @@ end
 
 
 defmodule Reprise.Runner do
+  require Logger
+
   defp iterate_beams(load_paths) do
     for d <- load_paths do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
@@ -92,6 +94,6 @@ defmodule Reprise.Runner do
     end
     reloaded = for {:reloaded, m} <- modules, do: m
     unless reloaded == [], do:
-      :error_logger.info_msg("Reloaded modules: #{inspect reloaded}\n")
+      Logger.info("Reloaded modules: #{inspect reloaded}")
   end
 end
