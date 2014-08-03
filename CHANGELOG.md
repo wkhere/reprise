@@ -1,3 +1,6 @@
+### v0.2.4
+Add Logger to dep apps
+
 ### v0.2.3
 Upgrade to Elixir 0.15.0 w/ Logger
 
