@@ -1,5 +1,5 @@
 defmodule RepriseTest do
-  use ExUnit.Case, async: false
+  use ExUnit.Case, async: true
   doctest Reprise.Server
 
   test "my own beams have proper names" do
