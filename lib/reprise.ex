@@ -1,6 +1,10 @@
 defmodule Reprise do
   use Application
 
+  @moduledoc """
+  Aplication supervising the `Reprise.Server`.
+  """
+
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
@@ -17,11 +21,48 @@ end
 defmodule Reprise.Server do
   use GenServer
 
-  def start_link(kw) do
-    GenServer.start_link(__MODULE__, kw, name: Reprise)
+  @moduledoc """
+  Server scanning project beam files for changes and reloading them.
+
+  The server is just repeatedly firing messages in a given time interval
+  and then delegating the actual work to `Reprise.Runner`.
+  """
+
+  @doc """
+  Starts the server passing a keyword list of options.
+
+  Currently valid and required options are:
+  `[interval: millis]`
+  """
+  @spec start_link(Keyword.t) :: any
+
+  def start_link(options) do
+    GenServer.start_link(__MODULE__, options, name: Reprise)
   end
 
-  def interval(arg\\nil), do: GenServer.call(Reprise, {:interval, arg})
+
+  @doc """
+  Reads or sets the current interval
+  between scans for module changes.
+
+  When called without argument, returns the current interval.
+
+  When called with argument, sets the interval (in milliseconds)
+  and returns previous one.
+
+  ## Examples
+
+      iex> Reprise.Server.interval
+      1000
+      iex> Reprise.Server.interval(2000)
+      {:ok, [prev: 1000]}
+  """
+  @spec interval() :: integer
+  @spec interval(integer | nil) :: integer | {:ok, Keyword.t}
+
+  def interval(millis \\ nil), do:
+    GenServer.call(Reprise, {:interval, millis})
+
 
   # callbacks
 
@@ -52,7 +93,10 @@ defmodule Reprise.Server do
 
   # helpers
 
+  @spec wait(integer) :: reference
   defp wait(interval), do: Process.send_after(self, :wake, interval)
+
+  @spec now() :: Reprise.Runner.time
   defp now(), do: :erlang.localtime
 end
 
