@@ -1,5 +1,6 @@
 defmodule RepriseTest do
   use ExUnit.Case, async: false
+  doctest Reprise.Server
 
   test "my own beams have proper names" do
     for b <- Reprise.Runner.beams,
