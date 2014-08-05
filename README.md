@@ -1,4 +1,4 @@
-## Reprise
+# Reprise
 [![Build Status](https://travis-ci.org/herenowcoder/reprise.svg?branch=master)](https://travis-ci.org/herenowcoder/reprise)
 
 A simplified module reloader for Elixir.
