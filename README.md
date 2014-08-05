@@ -20,9 +20,8 @@ to do this:
 - add to apps:
     ```Elixir
     def application do
-      dep_apps = [your_apps] 
-      if Mix.env == :dev, do: dep_apps = [:reprise | dep_apps]
-      [ applications: dep_apps ]
+      dev_apps = Mix.env == :dev && [:reprise] || []
+      [ applications: dev_apps ++ your_apps ]
     end
     ```
 
