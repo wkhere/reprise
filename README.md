@@ -29,8 +29,8 @@ to do this:
 Then your modules will be reinjected into your node - iex session
 for instance - with a nice log report, each time you recompile them.
 Here's an example how it looks like:
-```Elixir
-12:14:59.163 [info] Reloaded modules: [Rockside.HTML.DSL, Rockside]
+```
+iex> 12:14:59.163 [info] Reloaded modules: [Rockside.HTML.DSL, Rockside]
 ```
 
 The default interval between scans for changed modules is 1 second.
