@@ -47,12 +47,12 @@ iex(2)> Reprise.Server.interval(2000)
 Please note that for Elixir 0.15.0 and earlier,
 you need to manually load modules for the first time into iex.
 This is because your application has wrong bytecode signatures at start,
-they point to the source files not the beams (see [bug #2533] for further
-details).
+they point to the source files not the beams (see [issue #2533][beambug]
+for further details).
 
 Just do: `l MyModule` in iex, then your stuff will be reloaded.
 
-[bug #2553]: https://github.com/elixir-lang/elixir/issues/2533
+[beambug]: https://github.com/elixir-lang/elixir/issues/2533
 
 ### License
 
