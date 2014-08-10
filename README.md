@@ -16,7 +16,7 @@ you need reloading of modules. Here goes an example on how
 to do this:
 
 - add to deps: 
-  `{:reprise, "~> 0.2.5", only: :dev}`
+  `{:reprise, "~> 0.2.6", only: :dev}`
 
 - add to apps:
     ```Elixir
