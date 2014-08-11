@@ -146,8 +146,9 @@ defmodule Reprise.Runner do
   end
 
   @doc """
-  Attempts to reload all modules belonging to the current mix project,
-  which changed between given time frames.
+  Attempts to reload all modules which belong to the current mix project
+  and have changed between given time frames.
+
   If there were any and they reloaded successfully, prints a summary
   via `Logger.info/1`.
 
