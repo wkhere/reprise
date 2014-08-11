@@ -14,7 +14,7 @@ defmodule RepriseTest do
       assert File.regular? b
   end
 
-  test "can find my modules via beam files" do
+  test "can find my own modules" do
     Application.ensure_started :reprise
     mods = for {_f,m} <- Reprise.Runner.beam_modules, do: m
     refute mods == []
