@@ -13,5 +13,6 @@ before_install:
 before_script:
   - export MIX_ENV=test
   - mix deps.get
+  - mix compile
 script: 
   - mix test
