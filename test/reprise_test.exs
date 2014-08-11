@@ -1,5 +1,9 @@
 defmodule RepriseTest do
   use ExUnit.Case, async: true
+
+  setup do:
+    Application.ensure_started :reprise
+
   doctest Reprise.Server
 
   test "my own beams have proper names" do
@@ -15,7 +19,6 @@ defmodule RepriseTest do
   end
 
   test "can find my own modules" do
-    Application.ensure_started :reprise
     mods = for {_f,m} <- Reprise.Runner.beam_modules, do: m
     refute mods == []
     for m <- mods, do:
