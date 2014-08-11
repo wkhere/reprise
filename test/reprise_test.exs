@@ -15,8 +15,11 @@ defmodule RepriseTest do
   end
 
   test "can find my modules via beam files" do
-    for {_f,m} <- Reprise.Runner.beam_modules, do:
-      assert "#{m}" =~ ~r/^Elixir\.Reprise/
+    Application.ensure_started :reprise
+    mods = for {_f,m} <- Reprise.Runner.beam_modules, do: m
+    refute mods == []
+    for m <- mods, do:
+      assert "#{m}" =~ ~r/^Elixir\.Reprise\b/
   end
 
 end
