@@ -12,6 +12,7 @@ defmodule Reprise.Mixfile do
 
   def application do
     [mod: {Reprise, []},
+      registered: [Reprise],
       applications: [:logger],
       description: 'Simple module reloader',
      ]
