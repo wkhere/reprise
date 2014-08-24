@@ -2,7 +2,7 @@ defmodule RepriseTest do
   use ExUnit.Case, async: true
 
   setup do:
-    Application.ensure_started :reprise
+    Application.ensure_all_started :reprise
 
   doctest Reprise.Server
 
