@@ -19,7 +19,7 @@ you need reloading of modules. Here goes an example on how
 to do this:
 
 - add to deps: 
-  `{:reprise, "~> 0.2.7", only: :dev}`
+  `{:reprise, "~> 0.3.0", only: :dev}`
 
 - add to apps:
     ```Elixir
@@ -44,21 +44,6 @@ iex(1)> Reprise.Server.interval
 iex(2)> Reprise.Server.interval(2000)
 {:ok, [prev: 1000]}
 ```
-
-#### Loading a module for the first time
-
-Please note that in some cases
-you need to manually load modules for the first time into iex.
-On Elixir versions before 0.15.0 the beams may have the wrong file
-signature, pointing to the source file. This was fixed in 0.15.1,
-but still your module can have :in_memory information instead of
-the corresponding beam file.
-The topic is discussed [here][beambug].
-
-tl;dr: if your module doesn't show up as reloaded in iex,
-just do once: `l MyModule`, then it'll be reloaded on successive changes.
-
-[beambug]: https://github.com/elixir-lang/elixir/issues/2533
 
 ### License
 
