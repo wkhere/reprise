@@ -124,7 +124,17 @@ defmodule Reprise.Runner do
   Returns all beam files belonging to the current mix project.
   """
   @spec beams() :: [beam]
-  def beams(), do: iterate_beams(Mix.Project.load_paths)
+  def beams() do
+    beams = try do
+              Mix.Project.load_paths
+            catch
+              _,_ ->
+                Logger.error "Unable to load mix paths. Stopping application reprise."
+                Application.stop :reprise
+                []
+            end
+    iterate_beams beams
+  end
 
   @doc """
   Returns pairs of beam files and modules which are loaded
