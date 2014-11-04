@@ -128,7 +128,8 @@ defmodule Reprise.Runner do
     beams = try do
               Mix.Project.load_paths
             catch
-              _,_ ->
+              :exit, error ->
+                Logger.info "#{inspect error}"
                 Logger.error "Unable to load mix paths. Stopping application reprise."
                 Application.stop :reprise
                 []
