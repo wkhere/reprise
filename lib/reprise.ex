@@ -129,7 +129,7 @@ defmodule Reprise.Runner do
               (function_exported?(Mix.Project, :load_paths, 0) && Mix.Project.load_paths) ||
               :code.get_path
             catch
-              :exit, error ->
+              :exit, {:noproc, _}=error ->
                 Logger.info "#{inspect error}"
                 Logger.error "Unable to load mix paths. Stopping application reprise."
                 Application.stop :reprise
