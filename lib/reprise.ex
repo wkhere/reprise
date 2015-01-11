@@ -126,7 +126,8 @@ defmodule Reprise.Runner do
   @spec beams() :: [beam]
   def beams() do
     beams = try do
-              Mix.Project.load_paths
+              (function_exported?(Mix.Project, :load_paths, 0) && Mix.Project.load_paths) ||
+              :code.get_path
             catch
               _,_ ->
                 Logger.error "Unable to load mix paths. Stopping application reprise."
