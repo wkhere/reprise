@@ -115,7 +115,7 @@ defmodule Reprise.Runner do
 
   @spec iterate_beams([String.t]) :: [beam]
   defp iterate_beams(load_paths) do
-    for d <- load_paths do
+    for d <- load_paths, File.dir?(d) do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
     end |> List.flatten
   end
@@ -126,8 +126,14 @@ defmodule Reprise.Runner do
   @spec beams() :: [beam]
   def beams() do
     beams = try do
-              (function_exported?(Mix.Project, :load_paths, 0) && Mix.Project.load_paths) ||
-              :code.get_path
+              cond do
+                function_exported?(Mix.Project, :umbrella?, 0) and Mix.Project.umbrella? ->
+                  :code.get_path
+                function_exported?(Mix.Project, :load_paths, 0) ->
+                  Mix.Project.load_paths
+                true ->
+                  :code.get_path
+              end
             catch
               :exit, {:noproc, _}=error ->
                 Logger.info "#{inspect error}"
