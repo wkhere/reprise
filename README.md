@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/herenowcoder/reprise.svg?branch=master)](https://travis-ci.org/herenowcoder/reprise)
 [![hex.pm version](https://img.shields.io/hexpm/v/reprise.svg)](https://hex.pm/packages/reprise)
 [![hex.pm downloads](https://img.shields.io/hexpm/dt/reprise.svg)](https://hex.pm/packages/reprise)
+[![hex.pm downloads/week](https://img.shields.io/hexpm/dw/reprise.svg)](https://hex.pm/packages/reprise)
 
 
 A simplified module reloader for Elixir.
