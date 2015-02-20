@@ -3,7 +3,7 @@
 [![hex.pm version](https://img.shields.io/hexpm/v/reprise.svg)](https://hex.pm/packages/reprise)
 [![hex.pm downloads](https://img.shields.io/hexpm/dt/reprise.svg)](https://hex.pm/packages/reprise)
 [![hex.pm downloads/week](https://img.shields.io/hexpm/dw/reprise.svg)](https://hex.pm/packages/reprise)
-
+[![hex.pm license](https://img.shields.io/hexpm/l/reprise.svg)](https://github.com/herenowcoder/reprise/raw/master/LICENSE)
 
 A simplified module reloader for Elixir.
 
