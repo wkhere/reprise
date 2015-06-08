@@ -1,4 +1,6 @@
 ### v0.4.0
+* yrashk, jaydoane: exrm corner cases
+* lowks: simplify travis config 
 
 
 ### v0.3.0
