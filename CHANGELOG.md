@@ -1,3 +1,6 @@
+### v0.4.1-dev
+
+
 ### v0.4.0
 * yrashk, jaydoane: exrm/umbrella corner cases
 * lowks: simplify travis config 
