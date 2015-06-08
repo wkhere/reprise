@@ -1,8 +1,5 @@
-For clarity, this changelog describes only the changes between
-major/minor versions.
+### v0.4.0
 
-If you need to see what happened between patchlevels, please
-look at the git log.
 
 ### v0.3.0
 Use Elixir 1.0.
