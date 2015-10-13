@@ -37,7 +37,7 @@ defmodule Reprise.Mixfile do
   end
 
   defp package do
-    [ contributors: ["Wojciech Kaczmarek"],
+    [ maintainers: ["Wojciech Kaczmarek"],
       licenses: ["BSD"],
       description: description,
       links: %{"GitHub" => "https://github.com/herenowcoder/reprise"}
