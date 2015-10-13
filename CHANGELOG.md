@@ -1,3 +1,5 @@
+### v0.4.2-dev
+
 ### v0.4.1
 * allow Elixir 1.1.x
 
