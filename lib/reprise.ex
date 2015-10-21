@@ -164,6 +164,29 @@ defmodule Reprise.Runner do
   end
 
   @doc """
+  Check if a module has a hook defined to be called on reload
+  If it has, call the hook function
+  """
+  def call_reload_hook(module) do
+    hook_name = reload_hook_name()
+    hook_found = module.__info__(:functions) |> Enum.find(fn ({fname, _}) ->
+      fname == hook_name
+    end)
+    case hook_found do
+      nil -> nil
+      _func ->
+        Logger.debug("Calling #{hook_name} on: #{inspect module}")
+        apply(module, hook_name, [])
+    end
+  end
+
+  @doc "Return the name of on_reload hook function"
+  def reload_hook_name() do
+    cfg_name = Application.get_env :reprise, :reload_hook_name
+    cfg_name || :_reprise_on_reload
+  end
+
+  @doc """
   Attempts to reload all modules which belong to the current mix project
   and have changed between given time frames.
 
@@ -189,7 +212,9 @@ defmodule Reprise.Runner do
       end
     end
     reloaded = for {:reloaded, m} <- modules, do: m
-    unless reloaded == [], do:
+    unless reloaded == [] do
       Logger.info("Reloaded modules: #{inspect reloaded}")
+      for m <- reloaded, do: call_reload_hook(m)
+    end
   end
 end
