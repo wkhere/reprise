@@ -1,3 +1,5 @@
+### v0.4.3-dev
+
 ### v0.4.2
 * honor maintainers in package metadata
 
