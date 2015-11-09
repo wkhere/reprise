@@ -6,6 +6,13 @@ defmodule RepriseTest do
 
   doctest Reprise.Server
 
+  def _reprise_on_reload do
+    case :erlang.get(:hook_test) do
+      :undefined -> :erlang.put(:hook_test, 1)
+      n -> :erlang.put(:hook_test, n+1)
+    end
+  end
+
   test "my own beams have proper names" do
     for b <- Reprise.Runner.beams,
       f = b |> Path.split |> List.last,
@@ -23,6 +30,12 @@ defmodule RepriseTest do
     refute mods == []
     for m <- mods, do:
       assert "#{m}" =~ ~r/^Elixir\.Reprise\b/
+  end
+
+  test "can call reload hook" do 
+    Reprise.Runner.call_reload_hook(RepriseTest)
+    Reprise.Runner.call_reload_hook(RepriseTest)
+    assert :erlang.get(:hook_test) == 2
   end
 
 end
