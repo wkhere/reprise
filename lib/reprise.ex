@@ -178,7 +178,7 @@ defmodule Reprise.Runner do
   @spec go(time, time) :: :ok | nil
   def go(from, to) do
     modules = for {f,m} <- beam_modules do
-      case File.stat(f) do
+      case File.stat(f, time: :local) do
         {:ok, %File.Stat{mtime: mtime}} when mtime >= from and mtime < to ->
           case reload(m) do
             {:module, m} -> {:reloaded, m}
