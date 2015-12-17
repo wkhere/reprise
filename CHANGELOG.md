@@ -1,4 +1,5 @@
-### v0.4.3-dev
+### v0.4.3
+* ntrepid8: force localtime for File.stat
 
 ### v0.4.2
 * honor maintainers in package metadata
