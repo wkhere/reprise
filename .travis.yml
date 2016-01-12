@@ -7,4 +7,9 @@ otp_release:
   - 17.3
   - 17.4
   - 18.0
+matrix:
+  include:
+    - elixir: 1.2.0
+      otp_release: 18.0
+  
 env: MIX_ENV=test
