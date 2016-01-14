@@ -1,3 +1,7 @@
+### v0.4.4
+
+* be easygoing on Elixir 1.2
+
 ### v0.4.3
 * ntrepid8: force localtime for File.stat
 
