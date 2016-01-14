@@ -150,7 +150,7 @@ defmodule Reprise.Runner do
   """
   @spec beam_modules() :: [{beam, module}]
   def beam_modules() do
-    beamset = beams |> Enum.into HashSet.new
+    beamset = beams |> Enum.into(HashSet.new)
     for {m,f0} <- :code.all_loaded, is_list(f0),
       f = Path.expand(f0), Set.member?(beamset, f),
       do: {f,m}
