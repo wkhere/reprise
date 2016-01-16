@@ -1,5 +1,6 @@
-### v0.4.4
+### v0.4.5-dev
 
+### v0.4.4
 * be easygoing on Elixir 1.2
 
 ### v0.4.3
