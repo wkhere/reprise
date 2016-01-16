@@ -29,15 +29,15 @@ defmodule Reprise.Server do
   """
 
   @doc """
-  Starts the server passing a keyword list of options.
+  Starts the server passing a keyword list of arguments.
 
-  Currently valid and required options are:
+  Currently valid and required arguments are:
   `[interval: millis]`
   """
   @spec start_link(Keyword.t) :: any
 
-  def start_link(options) do
-    GenServer.start_link(__MODULE__, options, name: Reprise)
+  def start_link(args) do
+    GenServer.start_link(__MODULE__, args, name: Reprise)
   end
 
 
