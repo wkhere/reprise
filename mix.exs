@@ -19,7 +19,7 @@ defmodule Reprise.Mixfile do
   end
 
   defp deps do
-    []
+    [{:dialyze,   "~> 0.2",    only: :dev}]
   end
 
   defp description do
