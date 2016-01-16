@@ -57,8 +57,8 @@ defmodule Reprise.Server do
       iex> Reprise.Server.interval(2000)
       {:ok, [prev: 1000]}
   """
-  @spec interval() :: integer
-  @spec interval(integer | nil) :: integer | {:ok, Keyword.t}
+  @spec interval() :: non_neg_integer
+  @spec interval(integer | nil) :: non_neg_integer | {:ok, Keyword.t}
 
   def interval(millis \\ nil), do:
     GenServer.call(Reprise, {:interval, millis})
@@ -93,7 +93,7 @@ defmodule Reprise.Server do
 
   # helpers
 
-  @spec wait(integer) :: reference
+  @spec wait(non_neg_integer) :: reference
   defp wait(interval), do: Process.send_after(self, :wake, interval)
 
   @spec now() :: Reprise.Runner.time
