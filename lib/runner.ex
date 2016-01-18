@@ -20,8 +20,8 @@ defmodule Reprise.Runner do
   end
 
   @spec iterate_beams(path) :: [beam]
-  def iterate_beams(load_paths) do
-    for d <- load_paths, File.dir?(d) do
+  def iterate_beams(load_path) do
+    for d <- load_path, File.dir?(d) do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
     end
     |> List.flatten
