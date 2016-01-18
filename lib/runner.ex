@@ -13,7 +13,8 @@ defmodule Reprise.Runner do
 
   @spec load_path(Regex.t) :: path
   def load_path(pattern \\ ~r[/_build/]) do
-    for d <- :code.get_path, d=Path.expand(d),
+    for d <- :code.get_path,
+        d = Path.expand(d),
         Regex.match?(pattern, d),
     do: d
   end
@@ -22,7 +23,8 @@ defmodule Reprise.Runner do
   def iterate_beams(load_paths) do
     for d <- load_paths, File.dir?(d) do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
-    end |> List.flatten
+    end
+    |> List.flatten
   end
 
   @doc """
@@ -38,8 +40,10 @@ defmodule Reprise.Runner do
   @spec beam_modules([beam]) :: [{beam, module}]
   def beam_modules(beams \\ __MODULE__.beams) do
     beamset = beams |> Enum.into(HashSet.new)
-    for {m,f0} <- :code.all_loaded, is_list(f0),
-      f = Path.expand(f0), Set.member?(beamset, f),
+    for {m,f0} <- :code.all_loaded,
+      is_list(f0),
+      f = Path.expand(f0),
+      Set.member?(beamset, f),
       do: {f,m}
   end
 
