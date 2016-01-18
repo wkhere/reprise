@@ -48,5 +48,5 @@ iex(2)> Reprise.Server.interval(2000)
 
 ### License
 
-The code is released under the BSD 2-Clause License.
+The code is released under the BSD 2-Clause [License](https://raw.githubusercontent.com/herenowcoder/reprise/master/LICENSE).
 
