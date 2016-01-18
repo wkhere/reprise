@@ -1,5 +1,6 @@
 defmodule RepriseTest do
   use ExUnit.Case, async: true
+  alias Reprise.Runner
 
   setup do:
     Application.ensure_all_started :reprise
@@ -7,12 +8,12 @@ defmodule RepriseTest do
   doctest Reprise.Server
 
   test "can find my own beam files" do
-    for b <- Reprise.Runner.beams, do:
+    for b <- Runner.beams, do:
       assert File.regular? b
   end
 
   test "my own beams have proper names" do
-    for b <- Reprise.Runner.beams,
+    for b <- Runner.beams,
       not Regex.match?(~r[/consolidated/], b),
       f = b |> Path.split |> List.last,
       do:
@@ -20,7 +21,7 @@ defmodule RepriseTest do
   end
 
   test "can find my own modules" do
-    mods = for {f,m} <- Reprise.Runner.beam_modules,
+    mods = for {f,m} <- Runner.beam_modules,
       not Regex.match?(~r[/consolidated/], f),
       do: m
     refute mods == []
