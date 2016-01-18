@@ -129,14 +129,14 @@ defmodule Reprise.Runner do
   end
 
   @doc """
-  Returns all beam files belonging to the current mix project.
+  Returns all beam files belonging to the build of current project.
   """
   @spec beams() :: [beam]
   def beams(), do: load_path |> iterate_beams
 
   @doc """
   Returns pairs of beam files and modules which are loaded
-  and  belong to the current mix project.
+  and belong to the build of current project.
   """
   @spec beam_modules([beam]) :: [{beam, module}]
   def beam_modules(beams \\ __MODULE__.beams) do
