@@ -1,4 +1,5 @@
 ### v0.5.0-dev
+* simplify load_path logic
 
 ### v0.4.4
 * be easygoing on Elixir 1.2
