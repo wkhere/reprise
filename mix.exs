@@ -3,7 +3,7 @@ defmodule Reprise.Mixfile do
 
   def project do
     [app: :reprise,
-     version: "0.4.5-dev",
+     version: "0.5.0-dev",
      elixir: "~> 1.0",
      description: description,
      package: package,

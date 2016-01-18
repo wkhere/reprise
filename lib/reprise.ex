@@ -111,10 +111,18 @@ defmodule Reprise.Runner do
   """
 
   @type time :: :calendar.datetime
+  @type path :: [String.t]
   @type beam :: String.t
 
-  @spec iterate_beams([String.t]) :: [beam]
-  defp iterate_beams(load_paths) do
+  @spec load_path(Regex.t) :: path
+  def load_path(pattern \\ ~r[/_build/]) do
+    for d <- :code.get_path, d=Path.expand(d),
+        Regex.match?(pattern, d),
+    do: d
+  end
+
+  @spec iterate_beams(path) :: [beam]
+  def iterate_beams(load_paths) do
     for d <- load_paths, File.dir?(d) do
       for f <- File.ls!(d), Path.extname(f)==".beam", do: Path.join(d,f)
     end |> List.flatten
@@ -124,32 +132,14 @@ defmodule Reprise.Runner do
   Returns all beam files belonging to the current mix project.
   """
   @spec beams() :: [beam]
-  def beams() do
-    beams = try do
-              cond do
-                function_exported?(Mix.Project, :umbrella?, 0) and Mix.Project.umbrella? ->
-                  :code.get_path
-                function_exported?(Mix.Project, :load_paths, 0) ->
-                  Mix.Project.load_paths
-                true ->
-                  :code.get_path
-              end
-            catch
-              :exit, {:noproc, _}=error ->
-                Logger.info "#{inspect error}"
-                Logger.error "Unable to load mix paths. Stopping application reprise."
-                Application.stop :reprise
-                []
-            end
-    iterate_beams beams
-  end
+  def beams(), do: load_path |> iterate_beams
 
   @doc """
   Returns pairs of beam files and modules which are loaded
   and  belong to the current mix project.
   """
-  @spec beam_modules() :: [{beam, module}]
-  def beam_modules() do
+  @spec beam_modules([beam]) :: [{beam, module}]
+  def beam_modules(beams \\ __MODULE__.beams) do
     beamset = beams |> Enum.into(HashSet.new)
     for {m,f0} <- :code.all_loaded, is_list(f0),
       f = Path.expand(f0), Set.member?(beamset, f),
