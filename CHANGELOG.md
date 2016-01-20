@@ -1,4 +1,4 @@
-### v0.5.0-dev
+### v0.5.0
 * simplify load_path logic
 
   This should make possible reloading consolidated stuff.
