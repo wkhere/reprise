@@ -75,7 +75,7 @@ defmodule Reprise.Server do
   # helpers
 
   @spec wait(non_neg_integer) :: reference
-  defp wait(interval), do: Process.send_after(self, :wake, interval)
+  defp wait(interval), do: Process.send_after(self(), :wake, interval)
 
   @spec now() :: Runner.time
   defp now(), do: :erlang.localtime

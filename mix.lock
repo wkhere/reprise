@@ -1,1 +1,1 @@
-%{"dialyze": {:hex, :dialyze, "0.2.0"}}
+%{"dialyze": {:hex, :dialyze, "0.2.0", "ecabf292e9f4bd0f7d844981f899a85c0300b30ff2dd1cdfef0c81a6496466f1", [:mix], []}}

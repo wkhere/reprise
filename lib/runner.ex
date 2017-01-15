@@ -31,7 +31,7 @@ defmodule Reprise.Runner do
   Returns all beam files belonging to the build of current project.
   """
   @spec beams() :: [beam]
-  def beams(), do: load_path |> iterate_beams
+  def beams(), do: load_path() |> iterate_beams()
 
   @doc """
   Returns pairs of beam files and modules which are loaded
@@ -68,7 +68,7 @@ defmodule Reprise.Runner do
   """
   @spec go(time, time) :: :ok | nil
   def go(from, to) do
-    modules = for {f,m} <- beam_modules do
+    modules = for {f,m} <- beam_modules() do
       case File.stat(f, time: :local) do
         {:ok, %File.Stat{mtime: mtime}} when mtime >= from and mtime < to ->
           case reload(m) do

@@ -5,9 +5,9 @@ defmodule Reprise.Mixfile do
     [app: :reprise,
      version: "0.5.1-dev",
      elixir: "~> 1.0",
-     description: description,
-     package: package,
-     deps: deps]
+     description: description(),
+     package: package(),
+     deps: deps()]
   end
 
   def application do
@@ -40,7 +40,7 @@ defmodule Reprise.Mixfile do
     [ maintainers: ["Wojciech Kaczmarek",
       "Yurii Rashkovskii", "Jay Doane", "Josh Austin"],
       licenses: ["BSD"],
-      description: description,
+      description: description(),
       links: %{"GitHub" => "https://github.com/herenowcoder/reprise"}
     ]
   end
