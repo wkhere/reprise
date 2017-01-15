@@ -1,4 +1,5 @@
 ### v0.5.1-dev
+* some cosmetics for Elixir 1.4.x
 
 ### v0.5.0
 * simplify load_path logic
