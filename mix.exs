@@ -18,21 +18,20 @@ defmodule Reprise.Mixfile do
      ]
   end
 
-  defp deps do
-    [{:dialyze,   "~> 0.2",    only: :dev}]
+  defp deps do 
+    [
+      {:dialyze,   "~> 0.2",    only: :dev},
+      {:ex_doc,    ">= 0.0.0",  only: :dev},
+    ]
   end
 
   defp description do
     """
     Reprise reloads your modules after they've been recompiled.
 
-    This is an intentionally simplified reloader when compared
-    to the other ones, like exreloader or Mochiweb reloader.
-    It aims to do one thing well.
-    Only the beam files which were created under your mix project
-    are scanned for changes. Deps are also excluded from checking
-    and reloading. It doesn't try to compile changed sources --
-    this task is better left to some shell tools like inotify.
+    It is thought as a companion to inotify tools.
+    It scans for changes in beam files belonging to youyr project.
+    Doesn't recompile stuff by itself.
     """
   end
 
