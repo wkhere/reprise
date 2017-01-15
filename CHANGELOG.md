@@ -1,4 +1,4 @@
-### v0.5.1-dev
+### v0.5.1
 * some cosmetics for Elixir 1.4.x
 
 ### v0.5.0
