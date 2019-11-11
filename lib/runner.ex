@@ -39,11 +39,11 @@ defmodule Reprise.Runner do
   """
   @spec beam_modules([beam]) :: [{beam, module}]
   def beam_modules(beams \\ __MODULE__.beams) do
-    beamset = beams |> Enum.into(HashSet.new)
+    beamset = beams |> Enum.into(MapSet.new)
     for {m,f} <- :code.all_loaded,
       is_list(f),
       f = Path.expand(f),
-      Set.member?(beamset, f),
+      MapSet.member?(beamset, f),
       do: {f,m}
   end
 
