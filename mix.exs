@@ -21,7 +21,7 @@ defmodule Reprise.Mixfile do
   defp deps do 
     [
       {:dialyze,   "~> 0.2",    only: :dev},
-      {:ex_doc,    "~> 0.19",   only: :dev},
+      {:ex_doc,    "~> 0.30.6",   only: :dev},
     ]
   end
 
